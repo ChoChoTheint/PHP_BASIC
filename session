@@ -1,0 +1,70 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['username'])){
+    header("Location:index.php");
+}
+include "link.php";
+
+
+
+?>
+<h1>Member Page</h1>
+<?php
+session_start();
+if(!isset($_SESSION['username'])){
+    header("Location:index.php");
+}
+include "link.php";
+
+
+
+?>
+<h1>Product Page</h1>
+<?php
+
+
+
+if(isset($_POST['submit'])){
+    $user = $_POST['name'];
+    $pass = $_POST['password'];
+    
+
+    if($user == "Cho Cho Theint" && $pass == "123"){
+        $user = $_SESSION['username'];
+        $pass = $_SESSION['password'];
+        header("Location:member.php");
+    }else{
+        echo "you are not valid member";
+    }
+}
+
+include "link.php";
+echo "Index page" . "<br/>";
+
+?>
+
+<h1>Index Page</h1>
+<form action="<?php $_PHP_SELF; ?>" method="post">
+    <input type="text" name="name" placeholder="username"><br/><br/>
+    <input type="password" name="password"><br/><br/>
+    <button type="submit" name="submit">Login</button>
+
+</form>
+<a href="index.php">Home</a>
+<a href="product.php">Product</a>
+<a href="member.php">Member</a>
+<a href="logout.php">Logout</a>
+<br/></br/>
+<?php
+session_start();
+session_destroy();
+// unset($_SESSION['username']);
+// unset($_SESSION['password']);
+
+header("Location:index.php");
+include "link.php";
+
+
+?>
+<h1>Logout</h1>
